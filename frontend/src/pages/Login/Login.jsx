@@ -157,7 +157,7 @@ const Login = () => {
         <p className="text-sm text-gray-500">
           Designed &amp; Developed by{" "}
           <span className="font-semibold text-blue-600">
-            Information Technology Department
+            Information Technology
           </span>
         </p>
       </footer>
