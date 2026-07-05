@@ -2,7 +2,7 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-COPY . .
+COPY src/main/java/com/smartattendance/backend .
 
 RUN chmod +x mvnw
 
