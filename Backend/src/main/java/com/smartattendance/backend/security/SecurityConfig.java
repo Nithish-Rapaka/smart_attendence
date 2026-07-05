@@ -69,7 +69,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of("http://localhost:5173",
-                "https://smart-attendence-sxrf-kappa.vercel.app"));
+                "https://smart-attendence-sxrf-kappa.vercel.app","https://6a4a73d8b593e7b07ede6965--smart-attendannce.netlify.app/"));
 
         configuration.setAllowedMethods(List.of(
                 "GET",
