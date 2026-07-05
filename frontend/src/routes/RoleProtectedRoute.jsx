@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 
-const roleProtectedRoute = ({ allowedRoles, children }) => {
+const RoleProtectedRoute = ({ allowedRoles, children }) => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
 
@@ -15,4 +15,4 @@ const roleProtectedRoute = ({ allowedRoles, children }) => {
   return children;
 };
 
-export default roleProtectedRoute;
+export default RoleProtectedRoute;
