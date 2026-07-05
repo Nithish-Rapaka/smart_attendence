@@ -45,8 +45,12 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponse login(LoginRequest request) {
+
         System.out.println("LOGIN API CALLED");
         System.out.println(request.getEmail());
+
+        System.out.println("Before authenticate");
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -54,18 +58,17 @@ public class AuthServiceImpl implements AuthService {
                 )
         );
 
+        System.out.println("After authenticate");
+
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User Not Found"));
-
         UserDetails userDetails =
                 org.springframework.security.core.userdetails.User
                         .withUsername(user.getEmail())
                         .password(user.getPassword())
                         .roles(user.getRole().name())
                         .build();
-
         String token = jwtService.generateToken(userDetails);
-
         return LoginResponse.builder()
                 .token(token)
                 .role(user.getRole().name())
