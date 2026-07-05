@@ -20,6 +20,10 @@ public class AuthController {
     public String test() {
         return "Backend is working!";
     }
+    @PostMapping("/test-post")
+    public String testPost() {
+        return "POST Working";
+    }
     @PostMapping("/register")
     public ResponseEntity<String> register(
             @Valid @RequestBody RegisterRequest request) {
