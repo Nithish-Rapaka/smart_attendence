@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class AttendanceResponse {
 
     private Long id;
-
+    private Long studentId;
     private String rollNo;
 
     private LocalDate date;

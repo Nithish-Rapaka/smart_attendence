@@ -40,7 +40,22 @@ public class StudentServiceImpl implements StudentService {
 
         return map(student);
     }
+    @Override
+    public StudentResponse updateStudent(Long id, StudentRequest request) {
 
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+
+        AcademicClass academicClass = classRepository.findById(request.getAcademicClassId())
+                .orElseThrow(() -> new RuntimeException("Class not found"));
+
+        student.setRollNo(request.getRollNo());
+        student.setAcademicClass(academicClass);
+
+        studentRepository.save(student);
+
+        return map(student);
+    }
     @Override
     public List<StudentResponse> bulkGenerateStudents(BulkStudentRequest request) {
 
@@ -51,7 +66,20 @@ public class StudentServiceImpl implements StudentService {
 
         for (int i = request.getStartNumber(); i <= request.getEndNumber(); i++) {
 
-            String rollNo = request.getPrefix() + String.format("%03d", i);
+            String rollNo;
+
+            if (request.getPrefix().endsWith("A")
+                    || request.getPrefix().endsWith("B")
+                    || request.getPrefix().endsWith("C")) {
+
+                // Section format: A0, A1, A2...
+                rollNo = request.getPrefix() + i;
+
+            } else {
+
+                // Numeric format: 01, 02...99
+                rollNo = request.getPrefix() + String.format("%02d", i);
+            }
 
             if (!studentRepository.existsByRollNo(rollNo)) {
 
@@ -113,9 +141,11 @@ public class StudentServiceImpl implements StudentService {
         return StudentResponse.builder()
                 .id(student.getId())
                 .rollNo(student.getRollNo())
+                .academicClassId(student.getAcademicClass().getId())
                 .branch(student.getAcademicClass().getBranch())
                 .year(student.getAcademicClass().getYear())
                 .section(student.getAcademicClass().getSection())
                 .build();
     }
+
 }

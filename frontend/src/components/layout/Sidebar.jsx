@@ -7,8 +7,9 @@ import {
   FaSignOutAlt,
   FaTimes,
 } from "react-icons/fa";
-
+import { FaSchool } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { logout } from "../../utils/auth";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const menus = [
@@ -37,7 +38,24 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       path: "/profile",
       icon: <FaUserCircle />,
     },
+    {
+      name: "Academic Classes",
+      icon: <FaSchool />,
+      path: "/academic-classes",
+    },
   ];
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to logout?")) {
+      logout();
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
 
   return (
     <>
@@ -48,25 +66,25 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           className="fixed inset-0 bg-black/40 z-40 lg:hidden"
         />
       )}
-
       {/* Sidebar */}
       <aside
         className={`
-          fixed lg:static
-          top-0 left-0
-          z-50
-          h-screen
-          w-64
-          bg-slate-900
-          text-white
-          flex
-          flex-col
-          transform
-          transition-transform
-          duration-300
-          ${isOpen ? "translate-x-0" : "-translate-x-full"}
-          lg:translate-x-0
-        `}
+    fixed
+    top-0
+    left-0
+    z-50
+    h-screen
+    w-64
+    bg-slate-900
+    text-white
+    flex
+    flex-col
+    transform
+    transition-transform
+    duration-300
+    ${isOpen ? "translate-x-0" : "-translate-x-full"}
+    lg:translate-x-0
+  `}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-slate-700">
@@ -101,7 +119,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         </div>
 
         {/* Logout */}
-        <button className="flex items-center gap-3 p-6 hover:bg-red-600 transition">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 w-full px-5 py-3 text-white hover:bg-red-600 rounded-lg transition"
+        >
           <FaSignOutAlt />
           Logout
         </button>

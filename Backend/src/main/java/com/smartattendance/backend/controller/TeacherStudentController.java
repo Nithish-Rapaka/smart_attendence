@@ -1,5 +1,6 @@
 package com.smartattendance.backend.controller;
 
+import com.smartattendance.backend.dto.request.StudentRequest;
 import com.smartattendance.backend.dto.response.StudentResponse;
 import com.smartattendance.backend.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,13 @@ public class TeacherStudentController {
             @PathVariable Long classId) {
 
         return ResponseEntity.ok(studentService.getStudentsByClass(classId));
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<StudentResponse> updateStudent(
+            @PathVariable Long id,
+            @RequestBody StudentRequest request) {
+
+        return ResponseEntity.ok(studentService.updateStudent(id, request));
     }
 
 }

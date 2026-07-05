@@ -11,6 +11,8 @@ public class StudentResponse {
 
     private String rollNo;
 
+    private Long academicClassId;
+
     private String branch;
 
     private Integer year;

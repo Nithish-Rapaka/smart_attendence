@@ -54,5 +54,11 @@ public class AdminStudentController {
 
         return ResponseEntity.ok("All Students Deleted Successfully");
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<StudentResponse> updateStudent(
+            @PathVariable Long id,
+            @RequestBody StudentRequest request) {
 
+        return ResponseEntity.ok(studentService.updateStudent(id, request));
+    }
 }

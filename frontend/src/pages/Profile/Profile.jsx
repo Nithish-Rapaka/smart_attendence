@@ -1,14 +1,10 @@
-import MainLayout from "../../layouts/MainLayout";
 import { useState } from "react";
+import MainLayout from "../../layouts/MainLayout";
+import { updateEmail, changePassword } from "../../api/profileApi";
+import { logout } from "../../utils/auth";
 
 const Profile = () => {
-  const [profile, setProfile] = useState({
-    name: "Administrator",
-    email: "admin@gmail.com",
-    role: "Admin",
-    department: "Information Technology",
-    phone: "9876543210",
-  });
+  const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState({
     currentPassword: "",
@@ -16,143 +12,157 @@ const Profile = () => {
     confirmPassword: "",
   });
 
-  const handleProfileChange = (e) => {
-    setProfile({
-      ...profile,
-      [e.target.name]: e.target.value,
-    });
+  const handleEmailUpdate = async () => {
+    if (!email) {
+      alert("Please enter a new email");
+      return;
+    }
+
+    try {
+      const message = await updateEmail(email);
+
+      alert(message);
+
+      alert("Please login again with your new email.");
+
+      logout();
+    } catch (error) {
+      alert(error.response?.data || "Failed to update email");
+    }
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword({
-      ...password,
-      [e.target.name]: e.target.value,
-    });
+  const handlePasswordChange = async () => {
+    if (
+      !password.currentPassword ||
+      !password.newPassword ||
+      !password.confirmPassword
+    ) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    if (password.newPassword !== password.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const message = await changePassword({
+        currentPassword: password.currentPassword,
+        newPassword: password.newPassword,
+      });
+
+      alert(message);
+
+      setPassword({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      alert(error.response?.data || "Failed to update password");
+    }
   };
 
   return (
     <MainLayout>
       <div className="space-y-8">
-        {/* Heading */}
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">Profile</h1>
-          <p className="text-gray-500">Manage your account information</p>
+          <h1 className="text-3xl font-bold text-gray-800">Profile Settings</h1>
+
+          <p className="text-gray-500">Update your email and password</p>
         </div>
 
-        {/* Profile Card */}
+        {/* Update Email */}
+
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <img
-              src="https://i.pravatar.cc/150"
-              alt="Profile"
-              className="w-36 h-36 rounded-full border-4 border-blue-500"
+          <h2 className="text-2xl font-semibold mb-6">Update Email</h2>
+
+          <div>
+            <label className="font-medium">New Email</label>
+
+            <input
+              type="email"
+              placeholder="Enter new email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full mt-2 border rounded-lg px-4 py-3"
             />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 flex-1">
-              <div>
-                <label className="font-medium">Full Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={profile.name}
-                  onChange={handleProfileChange}
-                  className="w-full mt-2 border rounded-lg px-4 py-3"
-                />
-              </div>
-
-              <div>
-                <label className="font-medium">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={profile.email}
-                  onChange={handleProfileChange}
-                  className="w-full mt-2 border rounded-lg px-4 py-3"
-                />
-              </div>
-
-              <div>
-                <label className="font-medium">Role</label>
-                <input
-                  type="text"
-                  value={profile.role}
-                  disabled
-                  className="w-full mt-2 border rounded-lg px-4 py-3 bg-gray-100"
-                />
-              </div>
-
-              <div>
-                <label className="font-medium">Department</label>
-                <input
-                  type="text"
-                  name="department"
-                  value={profile.department}
-                  onChange={handleProfileChange}
-                  className="w-full mt-2 border rounded-lg px-4 py-3"
-                />
-              </div>
-
-              <div>
-                <label className="font-medium">Phone Number</label>
-                <input
-                  type="text"
-                  name="phone"
-                  value={profile.phone}
-                  onChange={handleProfileChange}
-                  className="w-full mt-2 border rounded-lg px-4 py-3"
-                />
-              </div>
-            </div>
           </div>
 
-          <div className="mt-8 text-right">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg">
-              Save Changes
+          <div className="mt-6 text-right">
+            <button
+              onClick={handleEmailUpdate}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg"
+            >
+              Update Email
             </button>
           </div>
         </div>
 
         {/* Change Password */}
+
         <div className="bg-white rounded-xl shadow-lg p-8">
           <h2 className="text-2xl font-semibold mb-6">Change Password</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div>
               <label className="font-medium">Current Password</label>
+
               <input
                 type="password"
                 name="currentPassword"
                 value={password.currentPassword}
-                onChange={handlePasswordChange}
+                onChange={(e) =>
+                  setPassword({
+                    ...password,
+                    currentPassword: e.target.value,
+                  })
+                }
                 className="w-full mt-2 border rounded-lg px-4 py-3"
               />
             </div>
 
             <div>
               <label className="font-medium">New Password</label>
+
               <input
                 type="password"
                 name="newPassword"
                 value={password.newPassword}
-                onChange={handlePasswordChange}
+                onChange={(e) =>
+                  setPassword({
+                    ...password,
+                    newPassword: e.target.value,
+                  })
+                }
                 className="w-full mt-2 border rounded-lg px-4 py-3"
               />
             </div>
 
             <div>
               <label className="font-medium">Confirm Password</label>
+
               <input
                 type="password"
                 name="confirmPassword"
                 value={password.confirmPassword}
-                onChange={handlePasswordChange}
+                onChange={(e) =>
+                  setPassword({
+                    ...password,
+                    confirmPassword: e.target.value,
+                  })
+                }
                 className="w-full mt-2 border rounded-lg px-4 py-3"
               />
             </div>
           </div>
 
           <div className="mt-8 text-right">
-            <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg">
+            <button
+              onClick={handlePasswordChange}
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg"
+            >
               Update Password
             </button>
           </div>

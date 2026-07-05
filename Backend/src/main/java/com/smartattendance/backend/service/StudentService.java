@@ -17,6 +17,6 @@ public interface StudentService {
     List<StudentResponse> bulkGenerateStudents(BulkStudentRequest request);
 
     void deleteStudent(Long id);
-
+    StudentResponse updateStudent(Long id, StudentRequest request);
     void deleteStudentsByClass(Long classId);
 }

@@ -3,17 +3,16 @@ export const saveAuth = (token, role) => {
   localStorage.setItem("role", role);
 };
 
-export const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("role");
-};
-
 export const getToken = () => {
   return localStorage.getItem("token");
 };
 
 export const getRole = () => {
   return localStorage.getItem("role");
+};
+
+export const logout = () => {
+  localStorage.clear();
 };
 
 export const isLoggedIn = () => {

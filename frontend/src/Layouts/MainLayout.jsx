@@ -6,13 +6,13 @@ const MainLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="h-screen flex overflow-hidden bg-gray-100">
       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 lg:ml-64 flex flex-col overflow-hidden">
         <Navbar setIsOpen={setIsOpen} />
 
-        <main className="flex-1 p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-6">{children}</main>
       </div>
     </div>
   );

@@ -75,4 +75,5 @@ public class AcademicClassServiceImpl implements AcademicClassService {
                 .section(academicClass.getSection())
                 .build();
     }
+
 }
