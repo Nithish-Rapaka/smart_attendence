@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
-
+    @GetMapping("/test")
+    public String test() {
+        return "Backend is working!";
+    }
     @PostMapping("/register")
     public ResponseEntity<String> register(
             @Valid @RequestBody RegisterRequest request) {
