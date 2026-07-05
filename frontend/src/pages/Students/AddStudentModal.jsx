@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllClasses } from "../../api/classApi";
 import { addStudent } from "../../api/studentApi";
 import { updateStudent } from "../../api/studentApi";
-const AddStudentModal = ({
+const addStudentModal = ({
   open,
   onClose,
   refreshStudents,
@@ -245,4 +245,4 @@ const AddStudentModal = ({
     </div>
   );
 };
-export default AddStudentModal;
+export default addStudentModal;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layouts/mainLayout";
 import { getAllClasses } from "../../api/classApi";
 import { getAttendanceSummary } from "../../api/attendanceApi";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-const Reports = () => {
+const reports = () => {
   const [classes, setClasses] = useState([]);
   const [report, setReport] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -389,4 +389,4 @@ const Reports = () => {
     </MainLayout>
   );
 };
-export default Reports;
+export default reports;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layouts/mainLayout";
 import { getAllClasses } from "../../api/classApi";
 import { getAllStudents } from "../../api/studentApi";
 import {
@@ -7,7 +7,7 @@ import {
   updateAttendance,
   getAttendanceByClassAndDate,
 } from "../../api/attendanceApi";
-const Attendance = () => {
+const attendance = () => {
   const [classes, setClasses] = useState([]);
   const [isUpdate, setIsUpdate] = useState(false);
   const [students, setStudents] = useState([]);
@@ -346,4 +346,4 @@ const Attendance = () => {
   );
 };
 
-export default Attendance;
+export default attendance;

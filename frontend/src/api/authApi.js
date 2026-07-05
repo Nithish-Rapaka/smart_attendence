@@ -8,6 +8,5 @@ export const login = async (credentials) => {
 
 export const register = async (user) => {
   const response = await axiosInstance.post("/auth/register", user);
-
   return response.data;
 };

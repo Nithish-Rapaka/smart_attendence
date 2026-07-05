@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layouts/mainLayout";
 import { getAllClasses } from "../../api/classApi";
 import AddAcademicClassModal from "./AddAcademicClassModal";
 import DeleteAcademicClassModal from "./DeleteAcademicClassModal";
 import { deleteClass } from "../../api/classApi";
 
-const AcademicClasses = () => {
+const academicClasses = () => {
   const [classes, setClasses] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -139,4 +139,4 @@ const AcademicClasses = () => {
   );
 };
 
-export default AcademicClasses;
+export default academicClasses;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Sidebar from "../components/layout/Sidebar";
 import Navbar from "../components/layout/Navbar";
 
-const MainLayout = ({ children }) => {
+const mainLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -18,4 +18,4 @@ const MainLayout = ({ children }) => {
   );
 };
 
-export default MainLayout;
+export default mainLayout;

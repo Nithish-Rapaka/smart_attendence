@@ -1,9 +1,9 @@
 import { useState } from "react";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layouts/mainLayout";
 import { updateEmail, changePassword } from "../../api/profileApi";
 import { logout } from "../../utils/auth";
 
-const Profile = () => {
+const profile = () => {
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState({
@@ -172,4 +172,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default profile;

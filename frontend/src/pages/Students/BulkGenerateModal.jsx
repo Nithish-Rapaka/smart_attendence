@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllClasses } from "../../api/classApi";
 import { bulkGenerateStudents } from "../../api/studentApi";
 
-const BulkGenerateModal = ({ open, onClose, onSuccess }) => {
+const bulkGenerateModal = ({ open, onClose, onSuccess }) => {
   const [classes, setClasses] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -267,4 +267,4 @@ const BulkGenerateModal = ({ open, onClose, onSuccess }) => {
   );
 };
 
-export default BulkGenerateModal;
+export default bulkGenerateModal;

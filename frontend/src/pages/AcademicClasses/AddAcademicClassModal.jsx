@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { addClass } from "../../api/classApi";
 
-const AddAcademicClassModal = ({ open, onClose, onSuccess }) => {
+const addAcademicClassModal = ({ open, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
     branch: "",
     year: "",
@@ -124,4 +124,4 @@ const AddAcademicClassModal = ({ open, onClose, onSuccess }) => {
   );
 };
 
-export default AddAcademicClassModal;
+export default addAcademicClassModal;

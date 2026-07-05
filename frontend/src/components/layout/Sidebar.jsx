@@ -11,7 +11,7 @@ import { FaSchool } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../utils/auth";
 
-const Sidebar = ({ isOpen, setIsOpen }) => {
+const sidebar = ({ isOpen, setIsOpen }) => {
   const menus = [
     {
       name: "Dashboard",
@@ -131,4 +131,4 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   );
 };
 
-export default Sidebar;
+export default sidebar;

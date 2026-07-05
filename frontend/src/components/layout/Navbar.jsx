@@ -1,6 +1,6 @@
 import { FaBars, FaBell } from "react-icons/fa";
 
-const Navbar = ({ setIsOpen }) => {
+const navbar = ({ setIsOpen }) => {
   return (
     <div className="relative z-10 bg-white shadow px-4 md:px-8 py-4 flex justify-between items-center">
       {/* Left Side */}
@@ -19,4 +19,4 @@ const Navbar = ({ setIsOpen }) => {
   );
 };
 
-export default Navbar;
+export default navbar;

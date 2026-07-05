@@ -7,9 +7,9 @@ import Attendance from "../pages/Attendance/Attendance";
 import Reports from "../pages/Reports/Reports";
 import Profile from "../pages/Profile/Profile";
 import RoleProtectedRoute from "./RoleProtectedRoute";
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "./protectedRoute";
 
-const AppRoutes = () => {
+const appRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -82,4 +82,4 @@ const AppRoutes = () => {
   );
 };
 
-export default AppRoutes;
+export default appRoutes;

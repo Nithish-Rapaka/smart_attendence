@@ -1,4 +1,4 @@
-const DeleteStudentModal = ({ open, onClose, onConfirm, rollNo }) => {
+const deleteStudentModal = ({ open, onClose, onConfirm, rollNo }) => {
   if (!open) return null;
 
   return (
@@ -31,4 +31,4 @@ const DeleteStudentModal = ({ open, onClose, onConfirm, rollNo }) => {
   );
 };
 
-export default DeleteStudentModal;
+export default deleteStudentModal;

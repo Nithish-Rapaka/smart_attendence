@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import MainLayout from "../../layouts/MainLayout";
-import Card from "../../components/common/Card";
+import MainLayout from "../../layouts/mainLayout";
+import Card from "../../components/common/card";
 import { getDashboardStats } from "../../api/dashboardApi";
 import {
   PieChart,
@@ -11,7 +11,7 @@ import {
   Legend,
 } from "recharts";
 
-const Dashboard = () => {
+const dashboard = () => {
   const [stats, setStats] = useState({
     totalStudents: 0,
     totalClasses: 0,
@@ -207,4 +207,4 @@ ${group.rollNumbers.join(", ")}`;
   );
 };
 
-export default Dashboard;
+export default dashboard;

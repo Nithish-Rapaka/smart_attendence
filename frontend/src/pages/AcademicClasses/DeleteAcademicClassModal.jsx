@@ -1,4 +1,4 @@
-const DeleteAcademicClassModal = ({ open, onClose, onConfirm, className }) => {
+const deleteAcademicClassModal = ({ open, onClose, onConfirm, className }) => {
   if (!open) return null;
 
   return (
@@ -33,4 +33,4 @@ const DeleteAcademicClassModal = ({ open, onClose, onConfirm, className }) => {
   );
 };
 
-export default DeleteAcademicClassModal;
+export default deleteAcademicClassModal;

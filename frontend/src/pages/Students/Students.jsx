@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layouts/mainLayout";
 import AddStudentModal from "./AddStudentModal";
 import BulkGenerateModal from "./BulkGenerateModal";
 import { deleteStudent, getAllStudents } from "../../api/studentApi";
 import DeleteStudentModal from "./DeleteStudentModal";
 
-const Students = () => {
+const students = () => {
   const [showBulkModal, setShowBulkModal] = useState(false);
   const [students, setStudents] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
@@ -193,4 +193,4 @@ const Students = () => {
   );
 };
 
-export default Students;
+export default students;
