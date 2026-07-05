@@ -1,0 +1,10 @@
+target
+.idea
+.git
+.gitignore
+README.md
+BUILD_REPORT.md
+HELP.md
+PROJECT_READY.txt
+PROJECT_STATUS.md
+SETUP_GUIDE.md
